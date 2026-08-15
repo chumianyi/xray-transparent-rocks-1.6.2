@@ -1,0 +1,16 @@
+[
+{
+  "modid": "xraymod",
+  "name": "Xray Transparent Rocks",
+  "description": "Makes all rock blocks transparent, showing only ores which glow in the dark. Grass blocks are semi-transparent. Client-side only mod for Minecraft 1.6.2.",
+  "version": "1.0.0",
+  "mcversion": "1.6.2",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["XrayMod"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
