@@ -9,8 +9,13 @@ import java.util.Map;
 @IFMLLoadingPlugin.TransformerExclusions({"com.xray."})
 public class XrayCorePlugin implements IFMLLoadingPlugin {
 
+    static {
+        System.out.println("[XrayMod] XrayCorePlugin loaded - coremod initializing");
+    }
+
     @Override
     public String[] getASMTransformerClass() {
+        System.out.println("[XrayMod] Registering ASM transformer: com.xray.XrayClassTransformer");
         return new String[]{"com.xray.XrayClassTransformer"};
     }
 
@@ -26,6 +31,7 @@ public class XrayCorePlugin implements IFMLLoadingPlugin {
 
     @Override
     public void injectData(Map<String, Object> data) {
+        System.out.println("[XrayMod] XrayCorePlugin.injectData called with " + data.size() + " entries");
     }
 
     @Override

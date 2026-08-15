@@ -6,22 +6,33 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class XrayHooks {
-    private static final Set<Integer> transparentBlocks = new HashSet<Integer>();
-    private static final Set<Integer> glowingBlocks = new HashSet<Integer>();
+    private static final Set<Integer> oreBlocks = new HashSet<Integer>();
+    private static boolean initialized = false;
 
-    public static void registerTransparent(Block block) {
-        if (block != null) transparentBlocks.add(block.blockID);
+    public static void registerOre(Block block, int glowLevel) {
+        if (block != null) {
+            oreBlocks.add(block.blockID);
+            Block.lightValue[block.blockID] = glowLevel;
+        }
     }
 
-    public static void registerGlowing(Block block, int level) {
-        if (block != null) {
-            glowingBlocks.add(block.blockID);
-            Block.lightValue[block.blockID] = level;
-        }
+    public static boolean isOre(Block block) {
+        if (block == null) return false;
+        return oreBlocks.contains(block.blockID);
     }
 
     public static boolean shouldSkip(Block block) {
         if (block == null) return false;
-        return transparentBlocks.contains(block.blockID);
+        if (!initialized) return false;
+        return !oreBlocks.contains(block.blockID);
+    }
+
+    public static void markInitialized() {
+        initialized = true;
+        System.out.println("[XrayMod] Hooks initialized - " + oreBlocks.size() + " ore types registered, all other blocks will be transparent");
+    }
+
+    public static boolean isReady() {
+        return initialized;
     }
 }
